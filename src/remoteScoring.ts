@@ -25,7 +25,7 @@ function convertPiResultToGradingResult(
   threshold: number,
 ): GradingResult {
   return {
-    pass: result.total_score > threshold,
+    pass: result.total_score >= threshold,
     score: result.total_score,
     namedScores: result.question_scores,
     reason: 'Pi Scorer',
@@ -57,7 +57,7 @@ export async function doRemoteScoringWithPi(
       },
       getRequestTimeoutMs(),
     );
-    if (status !== 200) {
+    if (status < 200 || status >= 300) {
       throw new Error(`Pi scoring failed with status ${status}: ${statusText}`);
     }
     if (!Number.isFinite(data?.total_score)) {

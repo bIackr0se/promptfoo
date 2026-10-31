@@ -30,6 +30,7 @@ describe('pi negation through assertion dispatch', () => {
     { totalScore: 0.8, threshold: undefined, pass: true },
     { totalScore: 0.2, threshold: undefined, pass: false },
     { totalScore: 0.8, threshold: 0.9, pass: false },
+    { totalScore: 0.8, threshold: 0.8, pass: true },
   ])('inverts the verdict and score (%j)', async ({ totalScore, threshold, pass }) => {
     vi.mocked(fetchWithCache).mockResolvedValue(
       createMockFetchResponse({
