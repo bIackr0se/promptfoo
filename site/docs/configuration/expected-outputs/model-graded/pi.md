@@ -7,6 +7,10 @@ description: 'Grade a response against a question using the Pi Labs scoring mode
 
 The `pi` assertion sends the prompt, provider output, and a grading question to Pi Labs. Its scoring model returns a numeric score for the question.
 
+## Alternative Approach
+
+Use `pi` for a numeric score from a dedicated grading model. Use `llm-rubric` to grade with a rubric and a model of your choice.
+
 ## Prerequisites
 
 Create a [Pi Labs API key](https://build.withpi.ai/account/keys) and set `WITHPI_API_KEY` in the environment that runs your eval.
@@ -23,6 +27,10 @@ assert:
   - type: not-pi
     value: Does the response insult the reader?
 ```
+
+## How it works
+
+Promptfoo sends the prompt, the provider output, and the grading question to Pi. It uses the overall score for the assertion and records the per-question scores as named metrics.
 
 ## Threshold Support
 
